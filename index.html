@@ -9,8 +9,8 @@
 <body>
     <div id="app">
         <template  v-if="flag">
-            
-            <h2 v-text="name" v-bind:title="name"></h2>
+
+            <h2 v-text="name" v-bind:title="name"  @copy="alerta"></h2>
 
         </template>
 
@@ -22,6 +22,7 @@
 
         </template>
 
+        <button @click.once="changeFlag">Change</button>
 
     </div>
 
@@ -47,7 +48,16 @@
             },
             created(){
                 console.log('created');
+            },
+            methods : {
+                changeFlag(){
+                    this.flag = !this.flag
+                },
+                alerta(){
+                    alert('copiado')
+                }
             }
+
         }
 
         Vue.createApp(Hola).mount("#app")
