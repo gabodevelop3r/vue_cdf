@@ -8,10 +8,14 @@
 </head>
 <body>
     <div id="app">
-        {{ name }}
 
+        <h2 v-text="name"></h2>
+        
 
         <input type="text" v-model="name">
+
+        <span v-bind:title="name">{{ name }}</span>
+
     </div>
 
 
