@@ -8,7 +8,7 @@
 </head>
 <body>
     <div id="app">
-        <template  v-if="flag">
+        <template v-if="flag">
 
             <h2 v-text="name" v-bind:title="name"  @copy="alerta"></h2>
 
@@ -16,7 +16,7 @@
 
         <template v-else>
 
-            <h2 v-else>Hola mundo else</h2>
+            <h2 >Hola mundo else</h2>
             <input type="text" v-model="name">
             <p v-for="(value,name,index) in numbers" v-text="value.total"></p>
 
@@ -24,6 +24,19 @@
 
         <button @click.once="changeFlag">Change</button>
 
+    </div>
+
+    <div id="form">
+        <p v-if="errors.length">
+            <template v-for="error in errors">
+                {{ error }}
+            </template>
+        </p>
+        <form @submit.prevent="submit">
+            <input type="text" v-model="form.name">
+            <textarea name="" id="" cols="30" rows="10" v-model="form.text"></textarea>
+            <button type="submit">enviar</button>
+        </form>
     </div>
 
 
@@ -57,10 +70,35 @@
                     alert('copiado')
                 }
             }
+        }
+        const Form = {
+            data(){
+                return {
+                    form : {
+                        name:'',
+                        text:''
+                    },
+                    errors : [
 
+                    ]
+                }
+            },
+            methods: {
+                submit(){
+                    this.errors = [];
+                    if(this.form.name == "")
+                        this.errors.push("El campo name no puede estar vacio")
+                    console.log(this.ßform)
+                }
+            }
         }
 
         Vue.createApp(Hola).mount("#app")
+        Vue.createApp(Form).mount("#form")
     </script>
+
+
+
+
 </body>
 </html>
