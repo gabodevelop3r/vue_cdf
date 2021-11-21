@@ -10,6 +10,13 @@
 </head>
 <body>
     <div id="app" >
+
+        {{ mGetRandom() }} <br>
+        {{ mGetRandom() }} <br>
+        {{ mGetRandom() }} <br>
+        {{ cGetRandom }} <br>
+        {{ cGetRandom }} <br>
+
         <template v-if="flag">
 
             <h2 v-text="name" v-bind:title="name"  @copy="alerta" ></h2>
@@ -62,6 +69,11 @@
                     }
                 }
             },
+            computed:{
+                cGetRandom(){
+                    return Math.random()
+                }
+            },
             beforeUpdate(){
                 console.log('before');
             },
@@ -74,6 +86,9 @@
                 },
                 alerta(){
                     alert('copiado')
+                },
+                mGetRandom(){
+                    return Math.random()
                 }
             }
         }
